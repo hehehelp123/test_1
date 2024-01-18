@@ -211,10 +211,6 @@ public class CrptApi {
             this.timeUnit = timeUnit;
         }
 
-        private Long now() {
-            return System.currentTimeMillis();
-        }
-
         public void acquire() throws LimitExceededException {
             try {
                 semaphore.acquire();
