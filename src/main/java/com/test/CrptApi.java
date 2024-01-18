@@ -25,7 +25,7 @@ public class CrptApi {
     public void CreateDocument(Document document, String signature) {
         try {
             semaphore.acquire();
-        } catch (DelayedSemaphore.LimitExceededException ignored) {
+        } catch (DelayedSemaphore.LimitExceededException e) {
             return;
         }
 
@@ -42,9 +42,7 @@ public class CrptApi {
                     .build();
             client.execute(request, null);
             client.close(CloseMode.IMMEDIATE);
-        } catch (Exception e) {
-            e.fillInStackTrace();
-        }
+        } catch (Exception ignored) { }
     }
 
     public static class Document implements Serializable {
